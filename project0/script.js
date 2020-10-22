@@ -8,16 +8,17 @@ const classNames = {
 const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
+const textToAdd = document.getElementById(`${classNames.TODO_TEXT}`)
 
 function newTodo() {
-  let itemCount = document.getElementById('item-count')
 
-  itemCount.innerHTML = Number(itemCount.innerHTML) + 1
+  itemCountSpan.innerHTML = Number(itemCountSpan.innerHTML) + 1
 
-  document.getElementById('todo-list').innerHTML += `<li>  
-                                                            <div class="todo-container">
-                                                            .. 
-                                                            <input type="checkbox" class = "todo-checkbox" id="toIncrement1" name="check1" value="increment">
+
+  list.innerHTML += `<li>  
+                                                            <div class=${classNames.TODO_ITEM}>
+                                                            ${textToAdd.value} 
+                                                            <input type="checkbox" class = ${classNames.TODO_CHECKBOX} id="toIncrement1" name="check1" value="increment">
                                                             </div>
                                                       </li>`;
 

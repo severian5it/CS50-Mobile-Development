@@ -64,3 +64,8 @@ ul {
 .todo-container:first-of-type {
   border-top: 1px solid #333;
 }
+/*https://stackoverflow.com/questions/9737394/html-how-to-center-align-a-form/9737550*/
+form {
+  margin: 1rem;
+  text-align: center;
+}
