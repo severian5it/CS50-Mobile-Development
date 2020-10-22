@@ -11,5 +11,5 @@ const uncheckedCountSpan = document.getElementById('unchecked-count')
 
 function newTodo() {
   let itemCount = document.getElementById('item-count')
-  itemCount.innerHTML = Number(itemCount.innerHTML) + gi1
+  itemCount.innerHTML = Number(itemCount.innerHTML) + 1
 }
