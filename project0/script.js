@@ -13,13 +13,32 @@ const textToAdd = document.getElementById(`${classNames.TODO_TEXT}`)
 function newTodo() {
 
   itemCountSpan.innerHTML = Number(itemCountSpan.innerHTML) + 1
-
+  uncheckedCountSpan.innerHTML = Number(uncheckedCountSpan.innerHTML) + 1
+  let checkBoxNumber = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`).length
 
   list.innerHTML += `<li>  
                                                             <div class=${classNames.TODO_ITEM}>
                                                             ${textToAdd.value} 
-                                                            <input type="checkbox" class = ${classNames.TODO_CHECKBOX} id="toIncrement1" name="check1" value="increment">
+                                                            <input type="checkbox" class = ${classNames.TODO_CHECKBOX} 
+                                                                    id="toIncrement${checkBoxNumber+1}" name="check${checkBoxNumber+1}" value="increment"
+                                                                    onclick="updateCount()">
                                                             </div>
-                                                      </li>`;
+                     </li>`;
 
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  updateCount = function () {
+    let checkBox = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`)
+    let nbrUnchecked=0
+    for(var i = 0, l = checkBox.length; i < l; ++i) {
+      if(!checkBox[i].checked) {
+        nbrUnchecked+=1
+      }
+    }
+    document.getElementById("unchecked-count").innerHTML = nbrUnchecked;
+  }
+}, false);
