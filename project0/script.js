@@ -16,12 +16,13 @@ function newTodo() {
   uncheckedCountSpan.innerHTML = Number(uncheckedCountSpan.innerHTML) + 1
   let checkBoxNumber = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`).length
 
-  list.innerHTML += `<li>  
+  list.innerHTML += `<li id="li${checkBoxNumber+1}">  
                                                             <div class=${classNames.TODO_ITEM}>
                                                             ${textToAdd.value} 
                                                             <input type="checkbox" class = ${classNames.TODO_CHECKBOX} 
-                                                                    id="toIncrement${checkBoxNumber+1}" name="check${checkBoxNumber+1}" value="increment"
-                                                                    onclick="updateCount()">
+                                                                    id="toIncrement${checkBoxNumber+1}" name="check${checkBoxNumber+1}" value="increment${checkBoxNumber+1}"
+                                                                    onclick="updateUncheckedCount()">
+                                                            <button class="todo-delete" type="delete" onclick="deleteMe(this)">Delete Me!</button>
                                                             </div>
                      </li>`;
 
@@ -32,6 +33,24 @@ function newTodo() {
 document.addEventListener('DOMContentLoaded', function() {
 
   updateCount = function () {
+
+    updateTodoCount();
+    updateUncheckedCount();
+
+
+  }
+
+  updateTodoCount = function () {
+    let checkBox = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`)
+    let nbrTodo=0
+    for(var i = 0, l = checkBox.length; i < l; ++i) {
+      nbrTodo+=1
+      }
+      itemCountSpan.innerHTML = nbrTodo;
+    }
+
+
+  updateUncheckedCount = function () {
     let checkBox = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`)
     let nbrUnchecked=0
     for(var i = 0, l = checkBox.length; i < l; ++i) {
@@ -39,6 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
         nbrUnchecked+=1
       }
     }
-    document.getElementById("unchecked-count").innerHTML = nbrUnchecked;
+    uncheckedCountSpan.innerHTML = nbrUnchecked;
   }
+
+  deleteMe = function(element){
+    let liParent = element.parentNode.parentNode.id
+    document.getElementById(liParent).remove();
+
+    updateCount()
+    }
+
 }, false);
