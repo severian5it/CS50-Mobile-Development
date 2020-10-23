@@ -50,10 +50,12 @@ ul {
 
 .todo-delete {
   margin: 10px;
+  float: right;
 }
 
 .todo-checkbox {
   margin: 10px;
+
 }
 
 .todo-container {

@@ -5,18 +5,19 @@ const classNames = {
   TODO_DELETE: 'todo-delete',
 }
 
-const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 const textToAdd = document.getElementById(`${classNames.TODO_TEXT}`)
 
 function newTodo() {
+  let list = document.getElementById('todo-list')
+  let checkBoxNumber = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`).length
 
   itemCountSpan.innerHTML = Number(itemCountSpan.innerHTML) + 1
   uncheckedCountSpan.innerHTML = Number(uncheckedCountSpan.innerHTML) + 1
-  let checkBoxNumber = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`).length
 
-  list.innerHTML += `<li id="li${checkBoxNumber+1}">  
+  li = document.createElement("li")
+  li.innerHTML = `<li id="li${checkBoxNumber+1}">  
                                                             <div class=${classNames.TODO_ITEM}>
                                                             ${textToAdd.value} 
                                                             <input type="checkbox" class = ${classNames.TODO_CHECKBOX} 
@@ -24,21 +25,17 @@ function newTodo() {
                                                                     onclick="updateUncheckedCount()">
                                                             <button class="todo-delete" type="delete" onclick="deleteMe(this)">Delete Me!</button>
                                                             </div>
-                     </li>`;
-
+                  </li>`;
+  list.appendChild(li)
 }
-
-
 
 document.addEventListener('DOMContentLoaded', function() {
 
   updateCount = function () {
-
     updateTodoCount();
     updateUncheckedCount();
-
-
   }
+
 
   updateTodoCount = function () {
     let checkBox = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`)
@@ -47,8 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
       nbrTodo+=1
       }
       itemCountSpan.innerHTML = nbrTodo;
-    }
-
+  }
 
   updateUncheckedCount = function () {
     let checkBox = document.getElementsByClassName(`${classNames.TODO_CHECKBOX}`)
@@ -66,6 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById(liParent).remove();
 
     updateCount()
-    }
+  }
 
 }, false);
