@@ -50,7 +50,9 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <button class="btn" onClick={() => this.addTodo()}>
+      <div>Todo Count: {this.state.todos.length}</div>
+      <div>Unchecked Count: {this.state.todos.filter(x => !x.checked ).length}</div>
+       <button class="btn" onClick={() => this.addTodo()}>
                 Add Todo <span class="badge badge-primary"></span>
         </button>
         <ul>
