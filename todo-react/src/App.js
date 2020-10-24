@@ -7,7 +7,7 @@ let id = 0
 const Todo = props => (
   <li>
     <input type="checkbox" />
-    <button>delete</button>
+    <button onClick={props.onDelete}>delete</button>
     <span>{props.todo.text}</span>
   </li>
 )
@@ -27,6 +27,12 @@ class App extends React.Component {
     })
   }
 
+  removeTodo(id) {
+    this.setState({
+      todos: this.state.todos.filter( todo => todo.id != id)
+    })
+  }
+
   render() {
     return(
       <div>
@@ -34,7 +40,13 @@ class App extends React.Component {
                 Add Todo <span class="badge badge-primary"></span>
         </button>
         <ul>
-          {this.state.todos.map(todo => <Todo todo={todo}></Todo>)}
+          {this.state.todos.map(
+            todo => (
+            <Todo 
+            onDelete={() => this.removeTodo(todo.id)}
+            todo={todo}>
+            </Todo>)
+            )}
         </ul>
       </div>
       ) 
