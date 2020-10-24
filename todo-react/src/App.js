@@ -1,10 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-const styles = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center',
-};
+
+let id = 0
 
 const Todo = props => (
   <li>
@@ -25,13 +23,13 @@ class App extends React.Component {
   addTodo() {
     const text = prompt("insert a Todo")
     this.setState({
-      todos:[...this.state.todos,{text: text}]
+      todos:[...this.state.todos,{id: id++, text: text}]
     })
   }
 
   render() {
     return(
-      <div style={styles}>
+      <div>
         <button class="btn" onClick={() => this.addTodo()}>
                 Add Todo <span class="badge badge-primary"></span>
         </button>
