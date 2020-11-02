@@ -29,12 +29,19 @@ first application created with Expo and React Native
 npm install -g expo-cli
 ```
 
-## React Native application Init ##
+## React Native application Setting ##
 
 ```
 expo init first-rn-app
 ```
-
+it will come with a git repository already there, you add a remote, or delete it, to add the application to an existing repository, with following instruction:
+```
+rm -rf .git
+```
+to install packages:
+```shell
+yarn add react-navigation
+```
 ### React Native Testing ###
 
 ```
